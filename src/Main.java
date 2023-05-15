@@ -1,29 +1,20 @@
+import java.sql.Array;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static int countWords(List<String> list, String word) {
-        return Collections.frequency(list, word);
+    public static final String STRING = "Привет! Я Тузик, мне 3 года. Заберите меня из приюта(";
+
+    private static String[] splitString(String str, String regex){
+        String[] array = str.split(regex);
+        return array;
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input:");
-        String str = scanner.nextLine();
-        List<String> stringList = new ArrayList<>();
-        for (String string : str.split(" ")) {
-            stringList.add(string);
-        }
-        System.out.println("В тексте " + stringList.size() + " слов");
-
-        Map<String, Long> frequency =
-                stringList.stream().collect(Collectors.groupingBy(
-                        Function.identity(), Collectors.counting()));
-        frequency.values().stream().sorted(Long::compareTo);
-
-        for (Map.Entry<String, Long> stringLongEntry : frequency.entrySet()) {
-            System.out.println(stringLongEntry);
+        String[] arr = splitString(STRING, ("[\\s!,(.]"));
+        for (String s : arr) {
+            System.out.println(s);
         }
     }
 }
